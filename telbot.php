@@ -17,14 +17,44 @@ if ($userId == 233490624) {
 	$image = "amiga.png";
 	$reply = "Ciao Fulvio ";
 	// send reply	
-	$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$reply;
-	file_get_contents($sendto);
+	//$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$reply;
+	//file_get_contents($sendto);
+	//$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$message;
+	//file_get_contents($sendto);
+	//$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$userId;
+	//file_get_contents($sendto);
+	// send photo
+	//sendPhoto($image,$chatID);
+
+	$url = 'http://syncroweb.homepc.it:8080';
+	$myvars = 'speech=' . $message ;
+
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_POST, 1);	
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_HEADER, 0);
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+
+	$response = curl_exec( $ch );
+	
+	/*
+	$url = 'http://syncroweb.homepc.it:8080';
+	$data = array('speech' => $message);
+	$options = array(
+        'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($data),
+    )
+	);
+
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+	*/
+	
 	$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$message;
 	file_get_contents($sendto);
-	$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$userId;
-	file_get_contents($sendto);
-	// send photo
-	sendPhoto($image,$chatID);
 
 }else{
 	// compose reply
