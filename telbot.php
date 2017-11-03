@@ -40,6 +40,9 @@ if ($userId == 233490624) {
 	//file_get_contents($sendto);
 	// send photo
 	//sendPhoto($image,$chatID);
+	$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$userId;
+	file_get_contents($sendto);
+
 	sayWords($message);
 
 	$sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$message;
